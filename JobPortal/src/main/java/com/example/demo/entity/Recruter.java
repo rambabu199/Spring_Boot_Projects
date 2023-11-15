@@ -1,7 +1,8 @@
 package com.example.demo.entity;
 
+
+import java.util.HashSet;
 import java.util.Set;
-import java.util.TreeSet;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -10,11 +11,14 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 
 @Entity
-@Table(name="recruter_boot")
+@Table(name="recruter_boot",uniqueConstraints = {
+		@UniqueConstraint(columnNames = "mobielnumber")
+})
 public class Recruter {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,7 +28,8 @@ public class Recruter {
 	@Pattern(regexp = "^[6-9]\\d{9}$",message = "mobile number should start with 6-9 series only and 10 digits")
 	private String mobielnumber;
 	
-	
+	@OneToMany(cascade = CascadeType.ALL,mappedBy = "recruter")
+	Set<JobClass>jobs=new HashSet<>();
 
 	public long getId() {
 		return id;
@@ -50,7 +55,13 @@ public class Recruter {
 		this.mobielnumber = mobielnumber;
 	}
 
-	
+	public Set<JobClass> getJobs() {
+		return jobs;
+	}
+
+	public void setJobs(Set<JobClass> jobs) {
+		this.jobs = jobs;
+	}
 
 	@Override
 	public String toString() {
