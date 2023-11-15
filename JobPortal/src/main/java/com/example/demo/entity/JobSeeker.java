@@ -36,13 +36,13 @@ public class JobSeeker {
 	private String qualification;
 	
 	
-	@OneToMany(cascade = CascadeType.ALL,mappedBy = "jobseeker")
+	/*@OneToMany(cascade = CascadeType.ALL,mappedBy = "jobseeker")
 	 @JoinTable(
 		        name = "jobseeker_jobclass", // Name of the join table
 		        joinColumns =@JoinColumn(name="jsid"), // Column in jobseeker_jobclass table that refers to JobSeeker
 		        inverseJoinColumns = @JoinColumn(name = "job_id") // Column in jobseeker_jobclass table that refers to JobClass
 		    )
-	private Set<JobClass> jobClasses = new HashSet<>();
+	private Set<JobClass> jobClasses = new HashSet<>();*/
 
 	
 	
@@ -86,12 +86,6 @@ public class JobSeeker {
 	}
 	public void setJsid(long jsid) {
 		this.jsid = jsid;
-	}
-	public Set<JobClass> getJobClasses() {
-		return jobClasses;
-	}
-	public void setJobClasses(Set<JobClass> jobClasses) {
-		this.jobClasses = jobClasses;
 	}
 	
 	

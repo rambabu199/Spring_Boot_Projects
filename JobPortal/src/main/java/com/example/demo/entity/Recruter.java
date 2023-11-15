@@ -24,8 +24,7 @@ public class Recruter {
 	@Pattern(regexp = "^[6-9]\\d{9}$",message = "mobile number should start with 6-9 series only and 10 digits")
 	private String mobielnumber;
 	
-	@OneToMany(cascade = CascadeType.ALL,mappedBy = "recruter")
-	private Set<JobClass> jobclass =new TreeSet<JobClass>();
+	
 
 	public long getId() {
 		return id;
@@ -51,18 +50,11 @@ public class Recruter {
 		this.mobielnumber = mobielnumber;
 	}
 
-	public Set<JobClass> getJobclass() {
-		return jobclass;
-	}
-
-	public void setJobclass(Set<JobClass> jobclass) {
-		this.jobclass = jobclass;
-	}
+	
 
 	@Override
 	public String toString() {
-		return "Recruter [id=" + id + ", name=" + name + ", mobielnumber=" + mobielnumber + ", jobclass=" + jobclass
-				+ "]";
+		return "Recruter [id=" + id + ", name=" + name + ", mobielnumber=" + mobielnumber + ","+ "]";
 	}
 	
 	

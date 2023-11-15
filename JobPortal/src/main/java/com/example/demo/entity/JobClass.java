@@ -34,17 +34,21 @@ public class JobClass {
 	private String req_qualification;
 	@NotNull(message = "required keyskills should not be null")
 	private String req_keyskills;
-	
+	/*
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "id")
 	private Recruter recruter;
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="jsid")
+	private JobSeeker jobseeker;
 	
 	public Recruter getRecruter() {
 		return recruter;
 	}
 	public void setRecruter(Recruter recruter) {
-		this.recruter = recruter;
-	}
+		this.recruter = recruter;*/
+	
 	public long getJob_id() {
 		return job_id;
 	}
