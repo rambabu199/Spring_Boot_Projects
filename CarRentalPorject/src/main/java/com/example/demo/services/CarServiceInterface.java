@@ -17,5 +17,12 @@ public interface CarServiceInterface {
 	public String deletecarByID(int id);
 	
 	public String deleteallCARS();
+	
+	public List<Car>displayCarByName(String name);
+	
+	public List<Car>displayCarByBrand(String brand);
+	
+	public List<Car>displayCarByregNum(String reg_num);
+	
 
 }

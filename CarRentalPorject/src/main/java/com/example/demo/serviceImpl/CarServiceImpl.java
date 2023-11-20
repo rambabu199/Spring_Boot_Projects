@@ -11,7 +11,7 @@ import com.example.demo.services.CarServiceInterface;
 @Service
 public class CarServiceImpl implements CarServiceInterface{
 	@Autowired
-	private final CarRepo carrepo;
+	private  CarRepo carrepo;
 	
 	public CarServiceImpl(CarRepo carrepo)
 	{
@@ -82,6 +82,41 @@ public class CarServiceImpl implements CarServiceInterface{
 	public String deleteallCARS() {
 		carrepo.deleteAll();
 		return "deleted all records successfully";
+	}
+
+
+	@Override
+	public List<Car> displayCarByName(String name) {
+		List<Car>cars=carrepo.findByCar_name(name);
+		if(cars.isEmpty()) {
+		return null;
+		}
+		else
+		return cars;
+	}
+
+
+	@Override
+	public List<Car> displayCarByBrand(String brand) {
+		List<Car>cars=carrepo.findByBrand(brand);
+		if(cars.isEmpty()) {
+		return null;
+		}
+		else
+		return cars;
+	}
+
+
+	@Override
+	public List<Car> displayCarByregNum(String reg_num) {
+
+		List<Car> c= carrepo.findByRegistrationNum(reg_num);
+		if(c.isEmpty())
+		{
+			return null;
+		}
+		else
+		return c;
 	}
 
 }

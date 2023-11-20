@@ -18,18 +18,18 @@ import com.example.demo.entity.Car;
 import com.example.demo.services.CarServiceInterface;
 
 @RestController
-@RequestMapping("/car")
+@RequestMapping("/owner/{ownerid}/car")
 public class CarController {
 	
 	@Autowired
 	private CarServiceInterface carserint;
-	@PostMapping("/savedetails")
-	public ResponseEntity<Car>savecar(@RequestBody Car car)
+	@PostMapping("/savecardetails")
+	public ResponseEntity<Car>savecar(@PathVariable int ownerid, @RequestBody Car car)
 	{
 		Car str=carserint.addcar(car);
 		return new ResponseEntity<>(str,HttpStatus.CREATED);
 	}
-	@GetMapping("/displayall")
+	@GetMapping("/displayallcars")
 	public ResponseEntity<List<Car>>retriveall()
 	{
 		List<Car>c=carserint.displayAll();
@@ -37,25 +37,25 @@ public class CarController {
 				
 				
 	}
-	@GetMapping("/displayBYID/{id}")
+	@GetMapping("/displaycarBYID/{id}")
 	public ResponseEntity<Car>retriveBYiD(@PathVariable int id)
 	{
 		Car c=carserint.displayByID(id);
 		return new ResponseEntity<Car>(c,HttpStatus.OK);
 	}
-	@PutMapping("/update/{id}")
+	@PutMapping("/updatecardetails/{id}")
 	public ResponseEntity<String>updateCAR(@RequestBody Car car,@PathVariable int id)
 	{
 		String str=carserint.updateCar(car, id);
 		return new ResponseEntity<String>(str,HttpStatus.OK);
 	}
-	@DeleteMapping("/deletebyid/{id}")
+	@DeleteMapping("/deletecarbyid/{id}")
 	public ResponseEntity<String>deletecar(@PathVariable int id)
 	{
 		String str=carserint.deletecarByID(id);
 		return new ResponseEntity<String>(str,HttpStatus.OK);
 	}
-	@DeleteMapping("/deleteall")
+	@DeleteMapping("/deleteallcars")
 	public ResponseEntity<String>deleteallcars()
 	{
 		String str=carserint.deleteallCARS();

@@ -1,9 +1,12 @@
 package com.example.demo.entity;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -16,6 +19,19 @@ public class Customer {
 	private String name;
 	private String licenceNum;
 	private String cus_mobile;
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="ownerid",referencedColumnName = "ownerid")
+	private Owner owner;
+	
+	
+	
+	public Owner getOwner() {
+		return owner;
+	}
+	public void setOwner(Owner owner) {
+		this.owner = owner;
+	}
 	public int getId() {
 		return id;
 	}
@@ -34,10 +50,7 @@ public class Customer {
 	public void setLicenceNum(String licenceNum) {
 		this.licenceNum = licenceNum;
 	}
-	@Override
-	public String toString() {
-		return "Customer [id=" + id + ", name=" + name + ", licenceNum=" + licenceNum + "]";
-	}
+	
 	public String getCus_mobile() {
 		return cus_mobile;
 	}

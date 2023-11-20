@@ -1,9 +1,15 @@
 package com.example.demo.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -18,6 +24,31 @@ public class Owner {
 	private String companyname;
 	private String address;
 	private String ownermobile;
+	
+	
+	@OneToMany(cascade =  CascadeType.ALL,mappedBy = "owner")
+	private List<Car>cars=new ArrayList<>();
+	
+	
+	@OneToMany(cascade = CascadeType.ALL,mappedBy = "owner")
+	private List<Driver>drivers=new ArrayList<>();
+	
+	@OneToMany(cascade = CascadeType.ALL,mappedBy = "owner")
+	private List<Customer>customers=new ArrayList<>();
+	
+	
+	public List<Driver> getDrivers() {
+		return drivers;
+	}
+	public void setDrivers(List<Driver> drivers) {
+		this.drivers = drivers;
+	}
+	public List<Car> getCars() {
+		return cars;
+	}
+	public void setCars(List<Car> cars) {
+		this.cars = cars;
+	}
 	public int getOwnerid() {
 		return ownerid;
 	}
