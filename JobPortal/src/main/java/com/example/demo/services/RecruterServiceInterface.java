@@ -3,6 +3,7 @@ package com.example.demo.services;
 import java.util.List;
 
 import com.example.demo.entity.JobClass;
+import com.example.demo.entity.JobSeeker;
 import com.example.demo.entity.Recruter;
 
 
@@ -34,6 +35,8 @@ public String updateJob(JobClass job,long id);
 	public String removebyid(long id);
 	
 	public String removeall();
+	
+	public List<JobSeeker>viewapplicants(long rid,long job_id,long jsid);
 	
 
 }

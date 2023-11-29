@@ -6,9 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.entity.JobClass;
+import com.example.demo.entity.JobSeeker;
 import com.example.demo.entity.Recruter;
 import com.example.demo.exceptions.ResourceNotFoundException;
 import com.example.demo.repository.JobClassRepository;
+import com.example.demo.repository.JobSeekerRepository;
 import com.example.demo.repository.RecruterRepository;
 import com.example.demo.services.RecruterServiceInterface;
 
@@ -18,11 +20,14 @@ public class RecruterServiceImpl implements RecruterServiceInterface{
 	private RecruterRepository recrepo;
 	
 	@Autowired
+	private JobSeekerRepository jsrepo;
+	
+	@Autowired
 	private JobClassRepository jobrepo;
 
 	@Override
 	public String upsert(Recruter recruter) {
-		long id=recruter.getId();
+		long id=recruter.getRid();
 		if(recrepo.existsById(id))
 		{
 			recrepo.save(recruter);
@@ -140,6 +145,12 @@ public class RecruterServiceImpl implements RecruterServiceInterface{
 	
 		jobrepo.deleteAll();
 		return "all records deleted successfully";
+	}
+
+	@Override
+	public List<JobSeeker> viewapplicants(long rid,long job_id,long jsid) {
+		// TODO Auto-generated method stub
+		return jsrepo.findApplicants(rid, job_id, jsid);
 	}
 
 }

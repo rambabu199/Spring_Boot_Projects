@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.entity.JobClass;
 import com.example.demo.entity.JobSeeker;
 import com.example.demo.exceptions.ResourceNotFoundException;
 import com.example.demo.services.JobSeekerServices;
@@ -82,6 +84,28 @@ public class JobSeekerController {
 		String str=jsservices.deleteall();
 		return new ResponseEntity<String>(str,HttpStatus.OK);
 	}
+	
+	@PutMapping("/applyjob/{jsid}")
+	public ResponseEntity<String>applyjob(@RequestBody JobClass job,@PathVariable long jsid)
+	{
+		String str=jsservices.applyjob(job, jsid);
+		return new ResponseEntity<String>(str,HttpStatus.OK);
+	}
+	
+	@GetMapping("/viewappliedjobs/{jsid}")
+	public ResponseEntity<Set<JobClass>>getapplied(@PathVariable long jsid)
+	{
+		Set<JobClass>applied=jsservices.viewappliedjobs(jsid);
+		return new ResponseEntity<Set<JobClass>>(applied,HttpStatus.OK);
+	}
+	
+	@GetMapping("/searchjobsbylocation/{location}")
+	public ResponseEntity<List<JobClass>>searchbylocation(@RequestBody String location)
+	{
+		List<JobClass>jobs=jsservices.searchjobsbyLocation(location);
+		return new ResponseEntity<List<JobClass>>(jobs,HttpStatus.OK);
+	}
+	
 	
 
 }

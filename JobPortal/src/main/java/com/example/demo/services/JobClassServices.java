@@ -20,4 +20,7 @@ public interface JobClassServices {
 	public String removebyid(long id);
 	
 	public String removeall();
+	
+	public List<JobClass>searchjobsbyLocation(String location);
+	public List<JobClass>searchjobsbytitle(String title);
 }

@@ -79,6 +79,13 @@ public class JobClassController {
 		return new ResponseEntity<String>(str,HttpStatus.OK);
 	}
 	
+	@GetMapping("/fetchbylocation/{location}")
+	public ResponseEntity<List<JobClass>>fetchbylocation(@PathVariable String location)
+	{
+		return new ResponseEntity<List<JobClass>>(jobservice.searchjobsbyLocation(location),HttpStatus.OK);
+	}
+	
+	
 	/*@GetMapping("/retrivebytitle/{title}")
 	public ResponseEntity<JobClass>retrivebyname(@PathVariable String title)
 	{

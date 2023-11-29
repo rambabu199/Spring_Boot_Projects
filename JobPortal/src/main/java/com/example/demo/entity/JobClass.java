@@ -1,7 +1,10 @@
 package com.example.demo.entity;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -46,17 +49,15 @@ public class JobClass {
         joinColumns = @JoinColumn(name="job_id"),
         inverseJoinColumns = @JoinColumn(name = "jsid")
     )
-    private Set<JobSeeker> jobSeekers = new HashSet<>();
+	@JsonBackReference
+    private List<JobSeeker> jobSeekers;
 	
 	
 	
 	 @ManyToOne(cascade = CascadeType.ALL)
-	 @JoinColumn(name="id",referencedColumnName = "job_id")
-	 private Recruter recruter;
-	
-	
-	
-	
+	 @JoinColumn(name="rec_id",referencedColumnName = "rid")
+	 @JsonBackReference
+	 private Recruter recruter;	
 	
 	public long getJob_id() {
 		return job_id;
@@ -112,10 +113,10 @@ public class JobClass {
 				+ req_exp + ", location=" + location + ", salary_package=" + salary_package + ", req_qualification="
 				+ req_qualification + ", req_keyskills=" + req_keyskills + "]";
 	}
-	public Set<JobSeeker> getJobSeekers() {
+	public List<JobSeeker> getJobSeekers() {
 		return jobSeekers;
 	}
-	public void setJobSeekers(Set<JobSeeker> jobSeekers) {
+	public void setJobSeekers(List<JobSeeker> jobSeekers) {
 		this.jobSeekers = jobSeekers;
 	}
 	

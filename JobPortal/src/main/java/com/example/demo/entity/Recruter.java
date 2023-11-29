@@ -2,7 +2,10 @@ package com.example.demo.entity;
 
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -16,27 +19,29 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 
 @Entity
-@Table(name="recruter_boot",uniqueConstraints = {
+@Table(name="recruter_boots",uniqueConstraints = {
 		@UniqueConstraint(columnNames = "mobielnumber")
 })
 public class Recruter {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private long rid;
 	@NotNull(message = "recruter name should not be null")
 	private String name;
 	@Pattern(regexp = "^[6-9]\\d{9}$",message = "mobile number should start with 6-9 series only and 10 digits")
 	private String mobielnumber;
 	
 	@OneToMany(cascade = CascadeType.ALL,mappedBy = "recruter")
-	Set<JobClass>jobs=new HashSet<>();
+	@JsonManagedReference
+	List<JobClass>jobs;
 
-	public long getId() {
-		return id;
+
+	public long getRid() {
+		return rid;
 	}
 
-	public void setId(long id) {
-		this.id = id;
+	public void setRid(long rid) {
+		this.rid = rid;
 	}
 
 	public String getName() {
@@ -55,17 +60,17 @@ public class Recruter {
 		this.mobielnumber = mobielnumber;
 	}
 
-	public Set<JobClass> getJobs() {
+	public List<JobClass> getJobs() {
 		return jobs;
 	}
 
-	public void setJobs(Set<JobClass> jobs) {
+	public void setJobs(List<JobClass> jobs) {
 		this.jobs = jobs;
 	}
 
 	@Override
 	public String toString() {
-		return "Recruter [id=" + id + ", name=" + name + ", mobielnumber=" + mobielnumber + ","+ "]";
+		return "Recruter [id=" + rid + ", name=" + name + ", mobielnumber=" + mobielnumber + ","+ "]";
 	}
 	
 	

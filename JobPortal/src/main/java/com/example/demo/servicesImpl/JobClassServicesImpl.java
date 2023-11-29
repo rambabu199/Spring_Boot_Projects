@@ -78,10 +78,16 @@ public class JobClassServicesImpl implements JobClassServices{
 		}
 	}
 
-	//@Override
-	/*public JobClass displayByName(String name) {
+	@Override
+	public List<JobClass> searchjobsbyLocation(String location) {
 		
-		return jobrepo.findByJob_title(name);
-	}*/
+		return jobrepo.findbyLocation(location);
+	}
+
+	@Override
+	public List<JobClass> searchjobsbytitle(String title) {
+		return null;
+	}
+
 
 }
