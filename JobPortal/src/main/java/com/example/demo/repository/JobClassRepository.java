@@ -16,5 +16,12 @@ public interface JobClassRepository extends JpaRepository<JobClass, Long> {
 	
 	@Query(value = "select * from Job_Class_boot jcb where jcb.job_title=:job_title",nativeQuery = true)
 	public List<JobClass>findbyTitle(@Param("job_title") String job_title);
+	
+	@Query(value = "SELECT *\r\n"
+			+ "FROM jobclass j\r\n"
+			+ "JOIN applyjob a ON a.job_id = j.job_id\r\n"
+			+ "JOIN jobseeker js ON js.jsid = a.jsid;\r\n"
+			+ "where j.job_id=:job_id AND js.jsid=:jsid",nativeQuery = true)
+	public List<JobClass>appliedjobs(@Param("job_id")long job_id,@Param("jsid")long jsid);
 
 }

@@ -18,9 +18,7 @@ public interface JobSeekerServices {
 	
 	public String deleteall();
 	
-	public String applyjob(JobClass job, long jsid);
 	
-	public Set<JobClass>viewappliedjobs(long jsid);
 	
 	public List<JobClass>searchjobsbyLocation(String location);
 	public List<JobClass>searchjobsbytitle(String title);

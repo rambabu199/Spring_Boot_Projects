@@ -85,19 +85,7 @@ public class JobSeekerController {
 		return new ResponseEntity<String>(str,HttpStatus.OK);
 	}
 	
-	@PutMapping("/applyjob/{jsid}")
-	public ResponseEntity<String>applyjob(@RequestBody JobClass job,@PathVariable long jsid)
-	{
-		String str=jsservices.applyjob(job, jsid);
-		return new ResponseEntity<String>(str,HttpStatus.OK);
-	}
 	
-	@GetMapping("/viewappliedjobs/{jsid}")
-	public ResponseEntity<Set<JobClass>>getapplied(@PathVariable long jsid)
-	{
-		Set<JobClass>applied=jsservices.viewappliedjobs(jsid);
-		return new ResponseEntity<Set<JobClass>>(applied,HttpStatus.OK);
-	}
 	
 	@GetMapping("/searchjobsbylocation/{location}")
 	public ResponseEntity<List<JobClass>>searchbylocation(@RequestBody String location)

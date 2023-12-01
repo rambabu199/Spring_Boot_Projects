@@ -1,10 +1,8 @@
 package com.example.demo.entity;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -43,20 +41,13 @@ public class JobClass {
 	@NotNull(message = "required keyskills should not be null")
 	private String req_keyskills;
 	
-	@ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(
-        name = "jobseeker_jobclass",
-        joinColumns = @JoinColumn(name="job_id"),
-        inverseJoinColumns = @JoinColumn(name = "jsid")
-    )
-	@JsonBackReference
-    private List<JobSeeker> jobSeekers;
+	
 	
 	
 	
 	 @ManyToOne(cascade = CascadeType.ALL)
 	 @JoinColumn(name="rec_id",referencedColumnName = "rid")
-	 @JsonBackReference
+	@JsonIgnore
 	 private Recruter recruter;	
 	
 	public long getJob_id() {
@@ -112,12 +103,6 @@ public class JobClass {
 		return "JobClass [job_id=" + job_id + ", job_title=" + job_title + ", job_desc=" + job_desc + ", req_exp="
 				+ req_exp + ", location=" + location + ", salary_package=" + salary_package + ", req_qualification="
 				+ req_qualification + ", req_keyskills=" + req_keyskills + "]";
-	}
-	public List<JobSeeker> getJobSeekers() {
-		return jobSeekers;
-	}
-	public void setJobSeekers(List<JobSeeker> jobSeekers) {
-		this.jobSeekers = jobSeekers;
 	}
 	
 	

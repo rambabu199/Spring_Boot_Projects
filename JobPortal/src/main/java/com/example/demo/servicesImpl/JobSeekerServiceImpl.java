@@ -76,32 +76,7 @@ public class JobSeekerServiceImpl implements JobSeekerServices{
 		return "empty set";
 	}
 
-	@Override
-	public String applyjob(JobClass job ,long jsid) {
-		
-		if(jsrepo.existsById(jsid))
-		{
-			JobSeeker exjs=jsrepo.findById(jsid).get();
-			exjs.getJobClasses().add(job);
-			return "job appiled successfully";
-		}
 	
-		else 
-		return "job seeker not found";
-	}
-
-	@Override
-	public Set<JobClass> viewappliedjobs(long jsid) {
-		if(jsrepo.existsById(jsid))
-		{
-			JobSeeker exjs=jsrepo.findById(jsid).get();
-			Set<JobClass>appliedjobs=exjs.getJobClasses();
-			return appliedjobs;
-		}
-		else
-		
-		return null;
-	}
 
 	@Override
 	public List<JobClass> searchjobsbyLocation(String location) {

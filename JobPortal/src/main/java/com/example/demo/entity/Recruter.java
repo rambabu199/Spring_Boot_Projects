@@ -1,10 +1,9 @@
 package com.example.demo.entity;
 
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.CascadeType;
@@ -31,8 +30,8 @@ public class Recruter {
 	@Pattern(regexp = "^[6-9]\\d{9}$",message = "mobile number should start with 6-9 series only and 10 digits")
 	private String mobielnumber;
 	
-	@OneToMany(cascade = CascadeType.ALL,mappedBy = "recruter")
-	@JsonManagedReference
+	@OneToMany(cascade = CascadeType.ALL)
+	@JsonIgnore
 	List<JobClass>jobs;
 
 
