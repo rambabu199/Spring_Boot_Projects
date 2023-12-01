@@ -1,0 +1,20 @@
+package com.example.demo.repository;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+
+import com.example.demo.entity.JobClass;
+
+public interface JobClassRepository extends JpaRepository<JobClass, Long> {
+	//public JobClass findByJob_title(String title);
+	@Query(value = "select * from Job_Class_boot jcb where jcb.location=:location",nativeQuery = true)
+	public List<JobClass>findbyLocation(@Param("location") String location);
+	
+	
+	@Query(value = "select * from Job_Class_boot jcb where jcb.job_title=:job_title",nativeQuery = true)
+	public List<JobClass>findbyTitle(@Param("job_title") String job_title);
+
+}
